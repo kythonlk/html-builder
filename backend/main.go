@@ -9,6 +9,6 @@ import (
 
 func main() {
 	handler := ai.SetupRoutes()
-	log.Println("Server starting on :3000")
-	log.Fatal(http.ListenAndServe(":3000", handler))
+	log.Println("Server starting on :5000")
+	log.Fatal(http.ListenAndServe(":5000", handler))
 }
