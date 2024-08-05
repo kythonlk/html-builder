@@ -1,40 +1,48 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import React, { useState } from "react";
 import AiImageHtml from "./components/AiImagehtml";
 import AiTextHtml from "./components/AiTexthtml";
 import AiImageRe from "./components/AiImagetable";
 import Home from "./Home";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('home');
+
+  const renderPage = () => {
+    switch(currentPage) {
+      case 'home':
+        return <Home />;
+      case 'ai-img':
+        return <AiImageHtml />;
+      case 'ai-text':
+        return <AiTextHtml />;
+      case 'ai-re':
+        return <AiImageRe />;
+      default:
+        return <Home />;
+    }
+  };
 
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-900 text-white p-8">
-        <nav className="bg-gray-600 p-2 flex justify-between rounded-xl justify-items-center items-center mb-4 px-10">
-          <h1 className="text-2xl font-bold">HTML Builder</h1>
-          <ul className="flex space-x-4">
+    <div className="min-h-screen bg-gray-900 text-white p-8">
+      <nav className="bg-gray-600 p-2 flex justify-between rounded-xl justify-items-center items-center mb-4 px-10">
+        <h1 className="text-2xl font-bold">HTML Builder</h1>
+        <ul className="flex space-x-4">
           <li>
-              <Link to="/" className="text-white hover:underline">Home</Link>
-            </li>
-            <li>
-              <Link to="/ai-img" className="text-white hover:underline">AI Image</Link>
-            </li>
-            <li>
-              <Link to="/ai-text" className="text-white hover:underline">AI Text</Link>
-            </li>
-            <li>
-              <Link to="/ai-re" className="text-white hover:underline">AI recipt extractor</Link>
-            </li>
-          </ul>
-        </nav>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/ai-img" element={<AiImageHtml />} />
-          <Route path="/ai-text" element={<AiTextHtml />} />
-          <Route path="/ai-re" element={<AiImageRe />} />
-        </Routes>
-      </div>
-    </Router>
+            <button onClick={() => setCurrentPage('home')} className="text-white hover:underline">Home</button>
+          </li>
+          <li>
+            <button onClick={() => setCurrentPage('ai-img')} className="text-white hover:underline">AI Image</button>
+          </li>
+          <li>
+            <button onClick={() => setCurrentPage('ai-text')} className="text-white hover:underline">AI Text</button>
+          </li>
+          <li>
+            <button onClick={() => setCurrentPage('ai-re')} className="text-white hover:underline">AI recipt extractor</button>
+          </li>
+        </ul>
+      </nav>
+      {renderPage()}
+    </div>
   );
 }
 
