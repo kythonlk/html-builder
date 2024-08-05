@@ -23,7 +23,7 @@ function App() {
               <Link to="/ai-text" className="text-white hover:underline">AI Text</Link>
             </li>
             <li>
-              <Link to="/ai-re" className="text-white hover:underline">AI Text</Link>
+              <Link to="/ai-re" className="text-white hover:underline">AI recipt extractor</Link>
             </li>
           </ul>
         </nav>
