@@ -101,7 +101,7 @@ func SetupRoutes() http.Handler {
 	}
 	mux.HandleFunc("/api/text", promptProcessor.ProcessPrmptHandler)
 
-	allowedOrigins := []string{"http://localhost:5173", "https://html-builder.netlify.app"}
+	allowedOrigins := []string{"https://html-builder.netlify.app"}
 	corsHandler := corsMiddleware(allowedOrigins)(mux)
 
 	return corsHandler
