@@ -89,12 +89,20 @@ func SetupRoutes() http.Handler {
 		fmt.Print("GEM_API environment variable is not set")
 	}
 	mux := http.NewServeMux()
-
+	// image
 	imageProcessor, err := NewImageProcessor(apiKey)
 	if err != nil {
 		panic(err)
 	}
 	mux.HandleFunc("/api/img", imageProcessor.ProcessImageHandler)
+
+	// reimage
+	reImageProcessor, err := NewReImageProcessor(apiKey)
+	if err != nil {
+		panic(err)
+	}
+	mux.HandleFunc("/api/reimg", reImageProcessor.ProcessImageHandler)
+	// prompt
 	promptProcessor, err := NewPromptProcessor(apiKey)
 	if err != nil {
 		panic(err)

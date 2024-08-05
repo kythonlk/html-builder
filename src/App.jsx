@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import AiImageHtml from "./components/AiImagehtml";
 import AiTextHtml from "./components/AiTexthtml";
+import AiImageRe from "./components/AiImagetable";
 import Home from "./Home";
 
 function App() {
@@ -21,12 +22,16 @@ function App() {
             <li>
               <Link to="/ai-text" className="text-white hover:underline">AI Text</Link>
             </li>
+            <li>
+              <Link to="/ai-re" className="text-white hover:underline">AI Text</Link>
+            </li>
           </ul>
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/ai-img" element={<AiImageHtml />} />
           <Route path="/ai-text" element={<AiTextHtml />} />
+          <Route path="/ai-re" element={<AiImageRe />} />
         </Routes>
       </div>
     </Router>
