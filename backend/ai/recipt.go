@@ -22,7 +22,7 @@ func NewReImageProcessor(apiKey string) (*ReImageProcessor, error) {
 	return &ReImageProcessor{Client: client}, nil
 }
 
-func (ip *ReImageProcessor) ProcessImageHandler(w http.ResponseWriter, r *http.Request) {
+func (ip *ReImageProcessor) ReProcessImageHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return

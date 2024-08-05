@@ -101,7 +101,7 @@ func SetupRoutes() http.Handler {
 	if err != nil {
 		panic(err)
 	}
-	mux.HandleFunc("/api/reimg", reImageProcessor.ProcessImageHandler)
+	mux.HandleFunc("/api/reimg", reImageProcessor.ReProcessImageHandler)
 	// prompt
 	promptProcessor, err := NewPromptProcessor(apiKey)
 	if err != nil {
