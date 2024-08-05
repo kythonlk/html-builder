@@ -19,10 +19,9 @@ const TextPrompt = () => {
     const formData = new FormData();
     formData.append('prompt', prompt);
 
-    setLoading(true); // Set loading to true when starting the request
-
+    setLoading(true);
     try {
-      const res = await fetch('http://localhost:3001/api/text', {
+      const res = await fetch('https://api.kythonlk.com/api/text', {
         method: 'POST',
         body: formData,
       });

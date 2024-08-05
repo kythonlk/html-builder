@@ -22,7 +22,7 @@ const ImageUpload = () => {
     formData.append('image', image);
 
     try {
-      const res = await fetch('http://localhost:3001/api/img', {
+      const res = await fetch('https://api.kythonlk.com/api/img', {
         method: 'POST',
         body: formData,
       });
@@ -59,11 +59,10 @@ const ImageUpload = () => {
         <button
           type="submit"
           disabled={loading}
-          className={`w-full py-2 px-4 font-semibold rounded-lg shadow-sm focus:outline-none ${
-            loading
-              ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500'
-          }`}
+          className={`w-full py-2 px-4 font-semibold rounded-lg shadow-sm focus:outline-none ${loading
+            ? 'bg-gray-400 cursor-not-allowed'
+            : 'bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500'
+            }`}
         >
           {loading ? 'Uploading...' : 'Upload'}
         </button>
