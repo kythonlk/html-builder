@@ -2,10 +2,8 @@ package ai
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/google/generative-ai-go/genai"
 	"google.golang.org/api/option"
@@ -83,51 +81,3 @@ func (ip *ImageProcessor) ProcessImageHandler(w http.ResponseWriter, r *http.Req
 	}
 }
 
-func SetupRoutes() http.Handler {
-	apiKey := os.Getenv("GEM_API")
-	if apiKey == "" {
-		fmt.Print("GEM_API environment variable is not set")
-	}
-	mux := http.NewServeMux()
-	// image
-	imageProcessor, err := NewImageProcessor(apiKey)
-	if err != nil {
-		panic(err)
-	}
-	mux.HandleFunc("/api/img", imageProcessor.ProcessImageHandler)
-
-	// reimage
-	reImageProcessor, err := NewReImageProcessor(apiKey)
-	if err != nil {
-		panic(err)
-	}
-	mux.HandleFunc("/api/reimg", reImageProcessor.ReProcessImageHandler)
-	// prompt
-	promptProcessor, err := NewPromptProcessor(apiKey)
-	if err != nil {
-		panic(err)
-	}
-	mux.HandleFunc("/api/text", promptProcessor.ProcessPrmptHandler)
-
-	allowedOrigins := []string{"https://html-builder.netlify.app"}
-	corsHandler := corsMiddleware(allowedOrigins)(mux)
-
-	return corsHandler
-}
-
-func corsMiddleware(allowedOrigins []string) func(http.Handler) http.Handler {
-	return func(next http.Handler) http.Handler {
-		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			origin := r.Header.Get("Origin")
-			for _, allowedOrigin := range allowedOrigins {
-				if allowedOrigin == origin {
-					w.Header().Set("Access-Control-Allow-Origin", origin)
-					w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-					w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-				}
-			}
-
-			next.ServeHTTP(w, r)
-		})
-	}
-}

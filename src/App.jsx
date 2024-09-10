@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import AiImageHtml from "./components/AiImagehtml";
 import AiTextHtml from "./components/AiTexthtml";
 import AiImageRe from "./components/AiImagetable";
-import Home from "./Home";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const [currentPage, setCurrentPage] = useState('ai-img');
 
   const renderPage = () => {
-    switch(currentPage) {
-      case 'home':
-        return <Home />;
+    switch (currentPage) {
       case 'ai-img':
         return <AiImageHtml />;
       case 'ai-text':
@@ -27,9 +24,6 @@ function App() {
       <nav className="bg-gray-600 p-2 flex justify-between rounded-xl justify-items-center items-center mb-4 px-10">
         <h1 className="text-2xl font-bold">HTML Builder</h1>
         <ul className="flex space-x-4">
-          <li>
-            <button onClick={() => setCurrentPage('home')} className="text-white hover:underline">Home</button>
-          </li>
           <li>
             <button onClick={() => setCurrentPage('ai-img')} className="text-white hover:underline">AI Image</button>
           </li>
